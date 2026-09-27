@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FURQUAN KHURSHEED // PORTFOLIO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-mono-tech { font-family: 'Share Tech Mono', monospace; }
+    
+    .glow-fire { box-shadow: 0 0 35px -5px rgba(239, 68, 68, 0.35); }
+    .glow-ice { box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.35); }
+
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 0.25; transform: scale(1); }
+      50% { opacity: 0.38; transform: scale(1.03); }
+    }
+    .ambient-pulse { animation: subtlePulse 5s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-[#050204] text-neutral-300 selection:bg-red-700 selection:text-white relative overflow-x-hidden min-h-screen">
+
+  <!-- Ambient Cinematic Background Glows -->
+  <div class="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_15%,#170709_0%,#080203_65%,#030102_100%)]"></div>
+  <div class="fixed -top-32 -left-32 w-80 h-80 bg-red-950/25 rounded-full blur-[100px] pointer-events-none ambient-pulse"></div>
+  <div class="fixed top-1/2 -right-32 w-80 h-80 bg-cyan-950/25 rounded-full blur-[100px] pointer-events-none ambient-pulse" style="animation-delay: -2.5s;"></div>
+
+  <!-- Battle HUD Header Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 py-2.5">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-3 text-xs">
+      <!-- Player 1 HP -->
+      <div class="flex items-center gap-2 w-1/3">
+        <span class="font-cinzel text-amber-500 font-bold hidden sm:inline text-[11px] tracking-wider">SCORPION</span>
+        <div class="h-2 w-full bg-neutral-900 rounded-full overflow-hidden border border-white/10 p-[1px]">
+          <div id="hp-scorp" class="h-full bg-gradient-to-r from-red-600 to-amber-500 rounded-full w-full transition-all duration-200"></div>
+        </div>
+      </div>
+
+      <!-- MK Status Crest -->
+      <div class="flex flex-col items-center">
+        <span class="font-cinzel text-red-500 font-black tracking-[0.25em] text-[11px]">MK // ARENA</span>
+        <span id="match-status" class="text-[9px] text-neutral-500 font-mono-tech uppercase">Round 1 • Active</span>
+      </div>
+
+      <!-- Player 2 HP -->
+      <div class="flex items-center gap-2 w-1/3">
+        <div class="h-2 w-full bg-neutral-900 rounded-full overflow-hidden border border-white/10 p-[1px]">
+          <div id="hp-subz" class="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full w-full transition-all duration-200"></div>
+        </div>
+        <span class="font-cinzel text-cyan-400 font-bold hidden sm:inline text-[11px] tracking-wider">SUB-ZERO</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Fatality Popup -->
+  <div id="fatality-banner" class="fixed inset-0 z-50 pointer-events-none flex flex-col items-center justify-center bg-black/90 backdrop-blur-xl opacity-0 transition-opacity duration-300">
+    <span class="text-xs uppercase tracking-[0.4em] text-red-500 font-bold">Combat Triggered</span>
+    <h2 id="fatality-title" class="font-cinzel text-5xl sm:text-7xl font-black text-red-600 tracking-widest drop-shadow-[0_0_35px_rgba(239,68,68,0.9)] text-center">
+      FLAWLESS VICTORY
+    </h2>
+    <p id="fatality-desc" class="font-mono-tech text-xs sm:text-sm text-amber-300 mt-2 tracking-wider text-center">
+      TARGET ELIMINATED // ROUND SECURED
+    </p>
+  </div>
+
+  <!-- Content Container -->
+  <main class="relative z-20 max-w-3xl mx-auto px-5 pt-28 pb-32 space-y-14">
+
+    <!-- Hero / Warrior Dossier -->
+    <section class="min-h-[72vh] flex flex-col justify-center items-start space-y-5 pt-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+        <span class="text-[11px] font-mono-tech text-neutral-300 tracking-wider uppercase">BCA Scholar • Tech Tinkerer • Operations</span>
+      </div>
+
+      <div class="space-y-2">
+        <h1 class="font-cinzel text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
+          FURQUAN KHURSHEED
+        </h1>
+        <p class="text-sm sm:text-base text-neutral-400 max-w-xl leading-relaxed">
+          Balancing BCA coursework at Mount Carmel College with nearly 4 years of back-office operations, spreadsheet architecture, and technical problem-solving. No fluff—just execution, discipline, and clean form.
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-3 pt-2">
+        <button onclick="strike('scorpion')" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-black font-cinzel font-bold text-xs tracking-wider transition-all glow-fire active:scale-95">
+          🔥 Scorpion Spear Strike
+        </button>
+        <button onclick="strike('subzero')" class="px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-cyan-500/40 text-cyan-300 font-cinzel font-bold text-xs tracking-wider transition-all glow-ice active:scale-95">
+          ❄️ Cryo Frost Freeze
+        </button>
+      </div>
+
+      <!-- Direct Portals -->
+      <div class="flex items-center gap-3 pt-1">
+        <a href="https://www.linkedin.com/in/furquan-undefined-62644143a" target="_blank" rel="noopener noreferrer" class="text-xs px-3.5 py-1.5 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 transition-colors">
+          LinkedIn ↗
+        </a>
+        <a href="https://www.instagram.com/furquan___?stkn=NTd1eDA4eDVkMHhh" target="_blank" rel="noopener noreferrer" class="text-xs px-3.5 py-1.5 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 transition-colors">
+          Instagram ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- Tactical Experience & Academics -->
+    <section class="space-y-4">
+      <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-white tracking-wide flex items-center gap-2">
+        <span class="text-red-500">⚔</span> OPERATIONS & ACADEMICS
+      </h2>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        <!-- Work Card -->
+        <div class="p-5 rounded-xl bg-neutral-950/70 border border-white/5 backdrop-blur-md space-y-2">
+          <span class="text-[10px] font-mono-tech text-amber-400 uppercase tracking-widest">4+ Years Frontline</span>
+          <h3 class="text-base font-bold text-white">Back-Office Operations</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Managing complex documentation pipelines, data spreadsheets, and quality control systems to ensure zero operational errors and tight turnarounds.
+          </p>
+        </div>
+
+        <!-- Academic Card -->
+        <div class="p-5 rounded-xl bg-neutral-950/70 border border-white/5 backdrop-blur-md space-y-2">
+          <span class="text-[10px] font-mono-tech text-cyan-400 uppercase tracking-widest">Mount Carmel College</span>
+          <h3 class="text-base font-bold text-white">BCA (Computer Applications)</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Pursuing core computer science foundations, algorithm structuring, software logic, and modern application development in Bengaluru.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- World & Interests (The Arsenal) -->
+    <section class="space-y-4">
+      <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-white tracking-wide flex items-center gap-2">
+        <span class="text-cyan-400">◈</span> THE ARSENAL & PROFILE
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        
+        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5 hover:border-amber-500/40 transition-colors">
+          <div class="flex items-center justify-between text-amber-400 font-mono-tech text-[11px]">
+            <span>GAMING & COMBAT</span>
+            <span>COD // MC // PS</span>
+          </div>
+          <p class="text-neutral-300">Fast-paced chaos in Call of Duty, sandbox creative mechanics in Minecraft, and deep immersive PlayStation campaigns.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5 hover:border-cyan-500/40 transition-colors">
+          <div class="flex items-center justify-between text-cyan-400 font-mono-tech text-[11px]">
+            <span>TECH & TINKERING</span>
+            <span>HARDWARE // AI // CRYPTO</span>
+          </div>
+          <p class="text-neutral-300">Diagnosing hardware bugs on mobile devices, tuning audio gear, exploring modern AI tools, and tracking market trends.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5 hover:border-amber-500/40 transition-colors">
+          <div class="flex items-center justify-between text-amber-400 font-mono-tech text-[11px]">
+            <span>CALISTHENICS</span>
+            <span>RINGS // BARS // LEVERS</span>
+          </div>
+          <p class="text-neutral-300">Clean bodyweight training. Strict form pull-ups, rings, resistance bands, and lever progression routines that reset focus.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5 hover:border-cyan-500/40 transition-colors">
+          <div class="flex items-center justify-between text-cyan-400 font-mono-tech text-[11px]">
+            <span>AESTHETICS & AUDIO</span>
+            <span>STREETWEAR // FRAGRANCE</span>
+          </div>
+          <p class="text-neutral-300">Curated woody and clean fragrance profiles, crisp football kit aesthetics, and high-energy music queues 24/7.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact & Fatality Arena -->
+    <section class="p-7 sm:p-8 rounded-2xl bg-gradient-to-b from-neutral-950 via-neutral-950/80 to-black border border-white/10 backdrop-blur-xl text-center space-y-5">
+      <div class="space-y-1.5">
+        <h3 class="font-cinzel text-2xl sm:text-3xl font-black text-white">INITIATE CONTACT</h3>
+        <p class="text-xs text-neutral-400 max-w-sm mx-auto">
+          Ready to connect for tech opportunities, operations workflows, or collaborative projects in Bengaluru.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 pt-1">
+        <a href="mailto:furquan024@gmail.com" class="px-5 py-2.5 rounded-lg bg-white text-black font-semibold text-xs hover:bg-neutral-200 transition-colors">
+          ✉ furquan024@gmail.com
+        </a>
+        <a href="tel:9036044593" class="px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white font-medium text-xs hover:bg-white/10 transition-colors">
+          ✆ +91 9036044593
+        </a>
+      </div>
+
+      <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-neutral-500">
+        <span>Bengaluru, India</span>
+        <button onclick="strike('fatality')" class="text-red-500 hover:text-red-400 font-bold uppercase tracking-wider">
+          [ Trigger Fatality ]
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Scripts -->
+  <script>
+    const hpScorp = document.getElementById('hp-scorp');
+    const hpSubz = document.getElementById('hp-subz');
+    const statusText = document.getElementById('match-status');
+    const banner = document.getElementById('fatality-banner');
+    const title = document.getElementById('fatality-title');
+    const desc = document.getElementById('fatality-desc');
+
+    // Scroll sync: combat gauges dynamically react
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(1, Math.max(0, scrollY / maxScroll));
+
+      hpScorp.style.width = (100 - (progress * 65)) + '%';
+      hpSubz.style.width = (100 - (progress * 55)) + '%';
+
+      if (progress > 0.8) {
+        statusText.innerText = "DANGER // LOW HP";
+        statusText.classList.add('text-red-500');
+      } else {
+        statusText.innerText = "ROUND 1 • ACTIVE";
+        statusText.classList.remove('text-red-500');
+      }
+    });
+
+    // Attacks & Fatality Trigger
+    window.strike = function(fighter) {
+      banner.style.opacity = '1';
+
+      if (fighter === 'scorpion') {
+        title.innerText = "SCORPION SPEAR";
+        title.className = "font-cinzel text-4xl sm:text-6xl font-black text-amber-400 tracking-widest drop-shadow-[0_0_30px_rgba(245,158,11,0.8)] text-center";
+        desc.innerText = '"GET OVER HERE!" // FIRE STRIKE LANDED';
+      } else if (fighter === 'subzero') {
+        title.innerText = "CRYO FREEZE";
+        title.className = "font-cinzel text-4xl sm:text-6xl font-black text-cyan-300 tracking-widest drop-shadow-[0_0_30px_rgba(6,182,212,0.8)] text-center";
+        desc.innerText = 'ABSOLUTE ZERO // OPPONENT FROZEN';
+      } else {
+        title.innerText = "FATALITY!";
+        title.className = "font-cinzel text-5xl sm:text-7xl font-black text-red-600 tracking-widest drop-shadow-[0_0_40px_rgba(239,68,68,1)] text-center";
+        desc.innerText = 'FURQUAN WINS // FLAWLESS VICTORY';
+      }
+
+      setTimeout(() => {
+        banner.style.opacity = '0';
+      }, 2000);
+    };
+  </script>
+</body>
+</html>
